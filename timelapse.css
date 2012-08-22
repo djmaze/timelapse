@@ -1,0 +1,29 @@
+body {
+    font-size: 11px;
+    background-color: #F1F1F1;
+}
+
+#total_time { margin-bottom: 2em; }
+
+.timers { border: 2px solid #E6E2DF; box-shadow: 2px 2px #D6D2CF; }
+.toggle_times { margin-bottom: 1em; }
+
+.timer { padding: 0 0 0.5em; border-bottom: 1px dotted; background: #FAFAFA; }
+.timer:nth-child(2n+1) { background: #fffffe; }
+.timer.running { border: 2px solid; }
+.timer.cleared, .timer.cleared * { color: grey; }
+.timer.cleared .time { display: none; }
+.timer:hover { background-color: #ffdf8b; }
+
+.timer.running .elapsed { font-weight: bold; }
+.timer.running .elapsed .sep { text-decoration: blink; }
+
+.time { margin-left: 2em; }
+.time textarea.comment { width: 20em; height: 1.5em }
+.timer.running .time { display: block; }
+/* .time .started_at, .time .stopped_at, .time .duration { display: inline-block; width: 3em; } */
+
+/* .timer input.start-stop { background-color: #adff2f; } */
+.timer.running input.start-stop { background-color: #ff000b; }
+
+#new-timer { margin-top: 1em; }

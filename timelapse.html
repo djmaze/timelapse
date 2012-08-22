@@ -1,0 +1,71 @@
+<head>
+  <title>timelapse</title>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Timelapse</h1>
+    {{> meta_title}}
+
+    {{> date}}
+    {{> timers}}
+</body>
+
+<template name="meta_title">
+    {{running_timer}}
+</template>
+
+<template name="date">
+    <select name="date" class="date">
+        <option value="0" {{#if date_is 0}}selected{{/if}}>Today</option>
+        <option value="-1">Yesterday</option>
+        <option value="-2">The day before yesterday</option>
+    </select>
+</template>
+
+<template name="timers">
+
+    <div id="total_time">Total time: {{total_time timers}}</div>
+
+    <input type="button" class="toggle_times" value="Show/hide times">
+
+    <div class="timers">
+
+        {{#each timers}}
+            {{> timer}}
+        {{/each}}
+    </div>
+
+    <div id="new-timer">
+        Add timer:
+        <form>
+            <input type="text" class="description">
+        </form>
+    </div>
+
+</template>
+
+<template name="timer">
+    <div class="timer {{running_class}}">
+        <!-- <span class="date">{{short_date}}</span> -->
+        <input type="checkbox" class="cleared" value="1" {{cleared_checked}}>
+        <input type="text" class="description" value="{{description}}">
+        <span class="elapsed">
+            {{elapsed_hours}}h<span class="sep">:</span>{{elapsed_minutes}}m
+        </span>
+        {{#unless cleared}}
+            <input type="button" class="start-stop" value="{{start_stop}}">
+            <input type="button" class="delete" value="x">
+        {{/unless}}
+
+        {{#each times}}
+            <div class="time">
+                <span class="started_at">{{time.started_at}}</span>-<span class="stopped_at">{{time.stopped_at}}</span>h
+                => <span class="duration">{{time.duration}}</span>
+                <textarea class="comment">{{time.comment}}</textarea>
+                <input type="button" class="delete_time" value="x">
+            </div>
+        {{/each}}
+    </div>
+</template>
+
